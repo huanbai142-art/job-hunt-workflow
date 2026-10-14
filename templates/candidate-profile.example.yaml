@@ -1,0 +1,74 @@
+# ---------------------------------------------------------------------------
+# Candidate profile TEMPLATE.
+#
+# Copy this file OUTSIDE the repository (e.g. ./private/candidate-profile.yaml),
+# fill in the real values, and keep it git-ignored. Never commit real data.
+#
+# Everything below uses placeholders on purpose.
+# ---------------------------------------------------------------------------
+
+identity:
+  full_name_zh: "{{FULL_NAME_ZH}}"        # e.g. 张三
+  full_name_en: "{{FULL_NAME_EN}}"        # e.g. ZHANG San
+  family_name: "{{FAMILY_NAME}}"          # for Western ATS forms
+  given_name: "{{GIVEN_NAME}}"
+  preferred_name: "{{PREFERRED_NAME}}"
+  phone: "{{PHONE}}"
+  email: "{{EMAIL}}"
+  city: "{{CITY}}"
+  political_status: "{{POLITICAL_STATUS}}"   # optional; omit if not applicable
+
+# Graduation date MUST be identical in every tailored resume.
+graduation: "YYYY.MM"
+availability: "{{AVAILABILITY}}"           # e.g. 3 days/week from YYYY.MM
+work_authorization: "{{WORK_AUTHORIZATION}}"
+
+education:
+  - school_zh: "{{UNIVERSITY_ZH}}"
+    school_en: "{{UNIVERSITY_EN}}"
+    college: "{{COLLEGE}}"
+    degree: "{{DEGREE}}"
+    major: "{{MAJOR}}"
+    start: "YYYY.MM"
+    end: "YYYY.MM"
+    rank_or_gpa: "{{RANK_OR_GPA}}"
+    courses:
+      - "{{COURSE_1}}"
+      - "{{COURSE_2}}"
+  - school_zh: "{{UNDERGRAD_UNIVERSITY_ZH}}"
+    degree: "{{UNDERGRAD_DEGREE}}"
+    major: "{{UNDERGRAD_MAJOR}}"
+    start: "YYYY.MM"
+    end: "YYYY.MM"
+    rank_or_gpa: "{{UNDERGRAD_RANK_OR_GPA}}"
+
+# The evidence bank. Keep entries to one action + one result each.
+# The tailoring stage draws from here; nothing is invented at tailoring time.
+evidence: []
+  # - id: E1
+  #   title: "{{PROJECT_OR_ROLE_NAME}}"
+  #   org: "{{ORGANISATION}}"
+  #   location: "{{LOCATION}}"
+  #   start: "YYYY.MM"
+  #   end: "YYYY.MM"
+  #   type: project            # project | internship | campus | competition
+  #   facts:
+  #     - "What you did, at what scale, with which tool"
+  #     - "The outcome, quantitative where possible"
+  #     - "What you learned / the transferable capability"
+  #   keywords: []             # competencies this proves, in your own words
+
+skills:
+  data_and_tools: ["{{SKILL}}", "{{SKILL}}"]
+  ai_and_tools: ["{{SKILL}}", "{{SKILL}}"]
+  design_and_content: ["{{SKILL}}", "{{SKILL}}"]
+  languages: ["{{LANGUAGE_CERT}}", "{{LANGUAGE_CERT}}"]
+
+honours:
+  - "{{HONOUR}}"
+
+documents:
+  resume_pdf: "private/docs/resume.pdf"
+  transcript: "private/docs/transcript.pdf"
+  english_cv: "private/docs/cv_en.pdf"
+  photo: "private/docs/photo.jpg"     # only if the employer expects one

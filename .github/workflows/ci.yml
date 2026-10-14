@@ -1,0 +1,98 @@
+name: CI
+
+# The PII guard is the point of this repository's CI: a skill about handling
+# personal career data must never itself ship personal data. Both jobs must pass
+# before anything is merged or released.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # ------------------------------------------------------------------ #
+  # Hard gate: no personal data, no private artefacts, ever.
+  # ------------------------------------------------------------------ #
+  pii-guard:
+    name: PII guard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # scan_pii.py is standard-library only, so no dependency install is needed
+      # here. Keeping this job dependency-free means the gate can never be
+      # skipped because a network install failed.
+      - name: Scan tracked files for personal data
+        run: python scripts/scan_pii.py . --fail-on-find
+
+      - name: Fail if private or build artefacts are tracked
+        run: |
+          set -euo pipefail
+          offenders="$(git ls-files \
+            | grep -iE '(^|/)private/|\.docx$|\.pdf$|\.xlsx$|\.pem$|\.key$|credential' \
+            | grep -v '^examples/sample-output/' || true)"
+          if [ -n "$offenders" ]; then
+            echo "::error::Private or build artefacts are tracked in git:"
+            echo "$offenders"
+            exit 1
+          fi
+          echo "OK: no private artefacts tracked."
+
+      - name: Assert the sample output is the only committed binary
+        run: |
+          set -euo pipefail
+          count="$(git ls-files | grep -icE '\.(docx|pdf|xlsx)$' || true)"
+          echo "committed document binaries: $count"
+          if [ "$count" -gt 2 ]; then
+            echo "::error::More than the two expected sample files are tracked."
+            git ls-files | grep -iE '\.(docx|pdf|xlsx)$'
+            exit 1
+          fi
+
+  # ------------------------------------------------------------------ #
+  # Structural integrity: the skill must actually be valid and runnable.
+  # ------------------------------------------------------------------ #
+  skill-check:
+    name: Skill integrity
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Validate skill integrity
+        run: python scripts/check_skill.py
+
+      - name: Smoke-test the resume builder
+        run: |
+          python scripts/build_resume.py \
+            examples/sample-output/sample-config.yaml \
+            --out /tmp/smoke --verify
+
+      - name: Smoke-test the tracker builder
+        run: |
+          python scripts/build_tracker.py \
+            templates/tracker.example.yaml --out /tmp/smoke/tracker.xlsx
+
+      - name: Smoke-test the JD extractor
+        run: |
+          python scripts/extract_text.py \
+            examples/sample-output/sample-resume-ats.docx | head -5

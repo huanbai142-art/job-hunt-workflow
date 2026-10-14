@@ -1,0 +1,76 @@
+# ---------------------------------------------------------------------------
+# Resume build config TEMPLATE — consumed by scripts/build_resume.py
+#
+# Copy outside the repo, fill with real content, keep git-ignored.
+# One config per job posting; keep them all so a resume can be re-generated.
+# ---------------------------------------------------------------------------
+
+style: ats            # ats | modern
+output_filename: "{{NAME}}_{{EMPLOYER}}_{{ROLE}}.docx"
+
+page:
+  top_cm: 1.3
+  bottom_cm: 1.3
+  left_cm: 1.5
+  right_cm: 1.5
+  header_cm: 0.5
+  footer_cm: 0.5
+
+header:
+  name: "{{FULL_NAME}}"
+  # The 3-4 items here are chosen FROM the JD requirements the candidate matches.
+  keywords: "{{COMPETENCY_1}} ｜ {{COMPETENCY_2}} ｜ {{COMPETENCY_3}} ｜ {{COMPETENCY_4}}"
+  target: "申请岗位：{{ROLE}} ｜ {{EMPLOYER}}"
+  meta_lines:
+    - "{{DEGREE_SUMMARY}} ｜ {{GRADUATION}}"
+    - "{{PHONE}} ｜ {{EMAIL}} ｜ {{LANGUAGE_CERT}}"
+  photo: ""           # only used by `modern`; e.g. private/docs/photo.jpg
+
+sections:
+  - title: "教育背景"
+    entries:
+      - title: "{{UNIVERSITY}} ｜ {{COLLEGE}} ｜ {{DEGREE}}"
+        date: "YYYY.MM—YYYY.MM"
+        bullets:
+          - "核心课程：{{COURSE_1}}、{{COURSE_2}}、{{COURSE_3}}。"
+      - title: "{{UNDERGRAD_UNIVERSITY}} ｜ {{UNDERGRAD_MAJOR}}"
+        date: "YYYY.MM—YYYY.MM"
+        bullets:
+          - "{{RANK_SENTENCE}}"
+
+  - title: "{{SECTION_TITLE_MATCHING_THE_JD}}"       # e.g. 产品与营销经历
+    entries:
+      - title: "{{PROJECT_NAME}} ｜ {{YOUR_ROLE}}"
+        date: "{{DATE_RANGE_OR_LABEL}}"
+        bullets:
+          # One bullet per JD requirement, rewritten in the JD's own language.
+          - "{{BULLET_1_ACTION + SCALE + TOOL + RESULT + NAMED_SKILL}}"
+          - "{{BULLET_2}}"
+          - "{{BULLET_3}}"
+
+  - title: "实习与组织经历"
+    entries:
+      - title: "{{EMPLOYER_OR_ORG}} ｜ {{ROLE}}"
+        date: "{{CITY}} | YYYY.MM—YYYY.MM"
+        bullets:
+          - "{{BULLET}}"
+
+  - title: "个人优势"
+    bullets:
+      - "{{ADVANTAGE_TIED_TO_A_JD_REQUIREMENT}}"
+      - "{{ADVANTAGE}}"
+      - "{{ADVANTAGE}}"
+      - "{{ADVANTAGE}}"
+
+  - title: "技能与证书"
+    kv:
+      - ["{{CATEGORY_1}}", " {{SKILL}}、{{SKILL}}、{{SKILL}}"]
+      - ["{{CATEGORY_2}}", " {{SKILL}}、{{SKILL}}"]
+      - ["语言能力", " {{LANGUAGE_CERT_1}} ｜ {{LANGUAGE_CERT_2}}"]
+      - ["荣誉奖项", " {{HONOUR_1}} ｜ {{HONOUR_2}}"]
+
+# Notes for the tailoring log (not rendered into the document):
+_tailoring_notes: >
+  Requirements emphasised: {{R1}}, {{R3}}.
+  Requirements left out (no evidence): {{R5}}.
+  Resume version tag: {{VERSION_TAG}}

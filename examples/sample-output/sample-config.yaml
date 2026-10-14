@@ -1,0 +1,43 @@
+style: ats
+output_filename: "sample-resume-ats.docx"
+page: {top_cm: 1.3, bottom_cm: 1.3, left_cm: 1.5, right_cm: 1.5, header_cm: 0.5, footer_cm: 0.5}
+header:
+  name: "示例候选人 Example Candidate"
+  keywords: "数据分析 ｜ 用户调研 ｜ 项目推进 ｜ 跨部门沟通"
+  target: "申请岗位：数据分析实习生 ｜ Example Corp"
+  meta_lines:
+    - "Example University ｜ Digital Economy MSc ｜ 20XX.XX 毕业"
+    - "{{PHONE}} ｜ {{EMAIL}} ｜ CET-6 558"
+sections:
+  - title: "个人概述"
+    paragraph: "示例候选人是一名数字经济学硕士在读生，具备数据分析、用户调研与竞品分析经验。曾参与跨部门项目从调研到落地的完整流程，并用编程工具独立完成数据清洗、统计与可视化。熟练使用 Python、Excel 及常见 AI 工具。"
+  - title: "教育背景"
+    entries:
+      - title: "Example University ｜ School of Example ｜ 数字经济学硕士"
+        date: "20XX.XX—20XX.XX"
+        bullets:
+          - "核心课程：数据分析与计量经济学、管理经济学与数字化转型、商业分析。"
+      - title: "Example University ｜ 经济学（拔尖班）本科 ｜ 专业排名前 20%"
+        date: "20XX.XX—20XX.XX"
+        bullets:
+          - "核心课程：机器学习、计量经济学、统计学、金融学。"
+  - title: "数据分析与项目经历"
+    entries:
+      - title: "示例研究项目 ｜ 数据分析负责人"
+        date: "20XX.XX—20XX.XX"
+        bullets:
+          - "主导问卷设计与实地调研，用 Python 完成数据清洗、统计与可视化，构建用户分层模型，为方案设计提供量化依据，锻炼了数据分析与建模能力。"
+          - "将复杂的调研结论用图表与结构化语言呈现，清晰传达给非数据背景的团队成员，锻炼了结构化表达能力。"
+      - title: "示例银行 ｜ 营业部助理"
+        date: "Example City | 20XX.XX—20XX.XX"
+        bullets:
+          - "用 Excel 登记、汇总并交叉核对业务数据，确保记录完整、口径一致，养成严谨细致的数据处理习惯。"
+  - title: "个人优势"
+    bullets:
+      - "有完整的数据分析项目经验，会用 Python / Excel 做清洗、统计与可视化；"
+      - "有跨部门协调与项目推进经验；"
+      - "逻辑清晰、结构化表达好，抗压、自驱。"
+  - title: "技能与证书"
+    kv:
+      - ["数据与办公", " Python、Excel（透视表/函数）、SQL（学习中）、PowerPoint"]
+      - ["语言能力", " IELTS 7.0 ｜ CET-6 558 ｜ 普通话母语"]

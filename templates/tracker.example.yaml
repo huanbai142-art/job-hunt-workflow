@@ -1,0 +1,29 @@
+# ---------------------------------------------------------------------------
+# Application tracker source — consumed by scripts/build_tracker.py
+# Keep real values in a private, git-ignored copy.
+# ---------------------------------------------------------------------------
+
+applications:
+  - company: "{{EMPLOYER_A}}"
+    role: "{{ROLE_TITLE}}"
+    resume_version: "{{NAME}}_{{EMPLOYER_A}}_{{ROLE}}.docx"
+    status: "已投"                  # 待投 / 已投 / 测评中 / 测评完成 / 面试中 / Offer / 已拒 / 无回应
+    channel: "employer careers site"
+    deadline: "YYYY-MM-DD"          # or "" when open-ended
+    applied_on: "YYYY-MM-DD"
+    next_action_on: "YYYY-MM-DD"
+    next_action: "等待在线测评邀请"
+    link: "https://example.com/job/123"
+    notes: "程序限制最多投递 3 个岗位，此为第一志愿"
+
+  - company: "{{EMPLOYER_B}}"
+    role: "{{ROLE_TITLE}}"
+    resume_version: "{{NAME}}_{{EMPLOYER_B}}_{{ROLE}}.docx"
+    status: "测评中"
+    channel: "campus portal"
+    deadline: "YYYY-MM-DD"
+    applied_on: "YYYY-MM-DD"
+    next_action_on: "YYYY-MM-DD"
+    next_action: "完成在线测评（5 天内）"
+    link: "https://example.com/job/456"
+    notes: "测评含性格测试，注意前后一致"

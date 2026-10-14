@@ -1,0 +1,39 @@
+# --- private candidate data: NEVER commit ---
+private/
+*.private.yaml
+candidate-profile.yaml
+resume-config.yaml
+tracker.yaml
+autofill-profile.yaml
+
+# --- credentials / secrets ---
+.env
+.env.*
+*credential*
+*secret*
+*.pem
+*.key
+
+# --- build output ---
+# All generated documents are ignored by default, so a real resume can never be
+# committed by accident. The ONE exception is the deliberately de-identified
+# sample in examples/sample-output/ (placeholder content only).
+out/
+*.docx
+*.pdf
+*.xlsx
+!templates/**/*.example.yaml
+!examples/**/*.md
+!examples/sample-output/sample-resume-ats.docx
+!examples/sample-output/sample-resume-ats.pdf
+
+# --- runtimes ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pylibs/
+
+# --- OS noise ---
+.DS_Store
+Thumbs.db

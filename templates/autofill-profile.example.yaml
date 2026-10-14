@@ -1,0 +1,56 @@
+# Autofill / form-pack profile TEMPLATE
+#
+# Drives **Mode A** (prepared answers) and **Mode B** (assisted prefill) described in
+# `references/05-autofill-webforms.md`.
+#
+# Copy this outside the repository, fill it in, and **git-ignore it**. It contains the
+# most sensitive data of the whole workflow. Never commit a filled copy.
+#
+# This file answers standard application-form fields so you never retype them.
+# It does **not** store credentials. The agent never handles your passwords — you
+# sign in yourself, and the assistant works in the session you are already in.
+
+identity:
+  family_name: "{{FAMILY_NAME}}"
+  given_name: "{{GIVEN_NAME}}"
+  full_name_zh: "{{FULL_NAME_ZH}}"
+  full_name_en: "{{FULL_NAME_EN}}"
+  phone: "{{PHONE}}"
+  email: "{{EMAIL}}"
+  city: "{{CITY}}"
+  nationality: "{{NATIONALITY}}"
+
+education:
+  - school: "{{UNIVERSITY}}"
+    degree: "{{DEGREE}}"
+    major: "{{MAJOR}}"
+    start: "YYYY.MM"
+    end: "YYYY.MM"
+    rank_or_gpa: "{{RANK_OR_GPA}}"
+  - school: "{{UNDERGRAD_UNIVERSITY}}"
+    degree: "{{UNDERGRAD_DEGREE}}"
+    major: "{{UNDERGRAD_MAJOR}}"
+    start: "YYYY.MM"
+    end: "YYYY.MM"
+
+standard_answers:
+  expected_graduation: "YYYY.MM"
+  availability: "{{AVAILABILITY}}"
+  salary_expectation: "{{SALARY_EXPECTATION}}"
+  how_did_you_hear: "{{REFERRAL_SOURCE}}"
+  willing_to_relocate: "{{YES_NO}}"
+  self_intro_zh: "{{SELF_INTRO_ZH}}"
+  self_intro_en: "{{SELF_INTRO_EN}}"
+
+documents:
+  resume_pdf: "private/docs/resume.pdf"
+  transcript: "private/docs/transcript.pdf"
+  english_cv: "private/docs/cv_en.pdf"
+  photo: "private/docs/photo.jpg"
+
+# Date format per portal, so the value is converted correctly at fill time.
+date_formats:
+  default: "YYYY.MM"
+  workday: "MM/YYYY"
+  greenhouse: "YYYY-MM"
+  taleo: "MM/YYYY"
